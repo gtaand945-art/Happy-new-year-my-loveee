@@ -34,8 +34,9 @@ button{
 }
 button:hover{opacity:0.9}
 .hidden{display:none}
-p{font-size:1.05rem; line-height:1.7;}
+p{font-size:1.05rem; line-height:1.7; text-align:left;}
 .highlight{color:#d63384; font-weight:600;}
+#message{white-space:pre-wrap;}
 </style>
 </head>
 <body>
@@ -62,65 +63,7 @@ p{font-size:1.05rem; line-height:1.7;}
 
 <!-- STEP 4 FULL MESSAGE -->
 <div class="card hidden" id="step4">
-<h1>Jasminee 🥹💋</h1>
-
-<p>We really went through a lot this year…<br>
-but <span class="highlight">humara dobara milna</span> — that was the best thing 🥹💗</p>
-
-<p>Meri berang zindagi mein phir se rang aa gaye,<br>
-<span class="highlight">sirf aapke kaaran</span> 🥹✨</p>
-
-<p>I’m so lucky to have you, really 🥹💕</p>
-
-<p>Main chahta hoon ki hum hamesha aise hi rahein,<br>
-aur humara relationship <span class="highlight">forever</span> rahe 🥹💗</p>
-
-<p>Itna strong bond ho ki log humein dekh ke kahe —<br>
-<em>“Inke jaisa bond ho toh ho.”em> 🫶</p>
-
-<p>You know… I love you <span class="highlight">so so so much</span> 🥹💗</p>
-
-<p>Aur mujhe aaj bhi humari <span class="highlight">first kiss</span> yaad hai 🥹💋<br>
-Aapka soft sa face, aur jis tarah aapne mujhe kiss kiya —<br>
-everything was just <span class="highlight">perfect</span> 🥹💕</p>
-
-<p>Woh 10 months bina aapke bohot mushkil the 🥹<br>
-Par mujhe bohot khushi hai ki <span class="highlight">tu hi wapas aayi meri zindagi mein</span> 💗</p>
-
-<p>Aur main vaada karta hoon —<br>
-<span class="highlight">ab tu hi rahegi</span> 🥹🫶</p>
-
-<p>Haan, shayad thoda late ho gaya…<br>
-par main khush hoon ki hum sahi waqt pe, dobara mile 🥹💗</p>
-
-<p class="highlight">
-Tu hi meri<br>
-meri good luck 🍀<br>
-meri khushi 😊<br>
-meri cutuuu 🥹<br>
-meri jassuuuu 💗<br>
-meri zindagi<br>
-meri jaan<br>
-meri future wife 😭❤️<br>
-meri bhonduuuu 🥹💗
-</p>
-
-<p class="highlight">I loveeeee youuuuu sooooo muchhh meri bhonduuuuu 🥹💗</p>
-
-<h2>✨ Happy New Year, My Love ✨</h2>
-
-<p>May God bless us with a beautiful, peaceful, care‑free life 🥹💗<br>
-Hamesha ek‑dusre ka saath mile,<br>
-ye pyaar bas badhta hi jaaye,<br>
-aur rab humein har buri nazar se durr rakhe 🤍🧿</p>
-
-<p class="highlight">I love you so much, Jasminee 🥹💗</p>
-
-<p>
-And again… <span class="highlight">Happy New Year, my love</span> 🥹💋<br><br>
-<em>Agr mnu zindagi dobaara jeon da mauka mile mai hr waar
-<span class="highlight">tere naal jeevanga</span> jasmineeeeee ❤️</em>
-</p>
+<div id="message"></div>
 </div>
 
 <!-- HIDDEN YOUTUBE IFRAME -->
@@ -133,16 +76,72 @@ And again… <span class="highlight">Happy New Year, my love</span> 🥹💋<br>
 
 <script>
 let musicStarted = false;
+let fullMessage = `Jasminee 🥹💋
+We really went through a lot this year…
+but humara dobara milna — that was the best thing 🥹💗
+Meri berang zindagi mein phir se rang aa gaye, sirf aapke kaaran 🥹✨
+I’m so lucky to have you, really 🥹💕
+Main chahta hoon ki hum hamesha aise hi rahein,
+aur humara relationship forever rahe 🥹💗
+Itna strong bond ho ki log humein dekh ke kahe —
+“Inke jaisa bond ho toh ho.” 🫶
+You know… I love you so so so much 🥹💗
+Aur mujhe aaj bhi humari first kiss yaad hai 🥹💋
+Aapka soft sa face, aur jis tarah aapne mujhe kiss kiya —
+everything was just perfect 🥹💕
+Woh 10 months bina aapke bohot mushkil the 🥹
+Par mujhe bohot khushi hai ki tu hi wapas aayi meri zindagi mein 💗
+Aur main vaada karta hoon —
+ab tu hi rahegi 🥹🫶
+Haan, shayad thoda late ho gaya…
+par main khush hoon ki hum sahi waqt pe, dobara mile 🥹💗
+Tu hi meri
+meri good luck 🍀
+meri khushi 😊
+meri cutuuu 🥹
+meri jassuuuu 💗
+meri zindagi
+meri jaan
+meri future wife 😭❤️
+meri bhonduuuu 🥹💗
+I loveeeee youuuuu sooooo muchhh meri bhonduuuuu 🥹💗
+Happy New Year, my love ✨
+May God bless us with a beautiful, peaceful, care‑free life 🥹💗
+Hamesha ek‑dusre ka saath mile,
+ye pyaar bas badhta hi jaaye,
+aur rab humein har buri nazar se durr rakhe 🤍🧿
+I love you so much, Jasminee 🥹💗
+And again… Happy New Year, my love 🥹💋
+Agr mnu zindagi dobaara jeon da mauka mile mai hr waar tere naal jeevanga jasmineeeeee`;
 
 function nextStep(step){
   document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden'));
   document.getElementById('step'+step).classList.remove('hidden');
 
-  // Start music on first click if not already
+  // Start music on first click
   if(!musicStarted){
     document.getElementById('music').classList.remove('hidden');
     musicStarted = true;
   }
+
+  // If final step, start typing effect
+  if(step === 4){
+    typeMessage(fullMessage, document.getElementById('message'), 20);
+  }
+}
+
+// Typing effect function
+function typeMessage(text, element, speed){
+  element.innerHTML = '';
+  let i = 0;
+  function type(){
+    if(i < text.length){
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  type();
 }
 </script>
 
