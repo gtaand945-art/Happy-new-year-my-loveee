@@ -61,22 +61,22 @@ p{font-size:1.05rem; line-height:1.7; text-align:left;}
   <button onclick="nextStep(4)">Click here 💌</button>
 </div>
 
-<!-- STEP 4 FULL MESSAGE -->
+<!-- STEP 4 -->
 <div class="card hidden" id="step4">
-<div id="message"></div>
+  <div id="message"></div>
 </div>
 
-<!-- HIDDEN YOUTUBE IFRAME -->
+<!-- YouTube music iframe (hidden) -->
 <div id="music" class="hidden">
-  <iframe width="0" height="0"
-    src="https://www.youtube.com/embed/2AJrQUkJQAw?autoplay=1&loop=1&playlist=2AJrQUkJQAw"
+  <iframe width="0" height="0" 
+    src="" 
     frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
   </iframe>
 </div>
 
 <script>
 let musicStarted = false;
-let fullMessage = `Jasminee 🥹💋
+const fullMessage = `Jasminee 🥹💋
 We really went through a lot this year…
 but humara dobara milna — that was the best thing 🥹💗
 Meri berang zindagi mein phir se rang aa gaye, sirf aapke kaaran 🥹✨
@@ -118,32 +118,32 @@ function nextStep(step){
   document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden'));
   document.getElementById('step'+step).classList.remove('hidden');
 
-  // Start music on first click
   if(!musicStarted){
+    const iframe = document.querySelector('#music iframe');
+    iframe.src = "https://www.youtube.com/embed/2AJrQUkJQAw?autoplay=1&loop=1&playlist=2AJrQUkJQAw";
     document.getElementById('music').classList.remove('hidden');
     musicStarted = true;
   }
 
-  // If final step, start typing effect
   if(step === 4){
-    typeMessage(fullMessage, document.getElementById('message'), 20);
+    typeMessage(fullMessage, document.getElementById('message'), 25);
   }
 }
 
-// Typing effect function
+// Typing effect
 function typeMessage(text, element, speed){
   element.innerHTML = '';
   let i = 0;
-  function type(){
+  function typing(){
     if(i < text.length){
       element.innerHTML += text.charAt(i);
       i++;
-      setTimeout(type, speed);
+      setTimeout(typing, speed);
     }
   }
-  type();
+  typing();
 }
 </script>
 
 </body>
-</html>
+    </html>
