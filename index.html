@@ -127,10 +127,20 @@ p{font-size:1.05rem; line-height:1.7; text-align:left;}
   <button onclick="nextStep(7)">Always 😍</button>
 </div>
 
-<!-- Final Message -->
+<!-- Final Step with Music Button -->
 <div class="card hidden" id="step7">
+  <button onclick="playMusicAndShowMessage()">Click here to see your message 🎶💗</button>
+</div>
+
+<!-- Long Message -->
+<div class="card hidden" id="messageCard">
   <div id="message"></div>
 </div>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="https://drive.google.com/uc?export=download&id=1BhLxN09jAHC7tlNKAFuCxAcQxN8b9CDy" type="audio/mpeg">
+</audio>
 
 <script>
 const fullMessage = `Jasminee 🥹💋
@@ -172,17 +182,21 @@ And again… Happy New Year, my love 🥹💋
 Agr mnu zindagi dobaara jeon da mauka mile mai hr waar tere naal jeevanga jasmineeeeee`;
 
 function nextStep(step){
-  // Hide all steps
   for(let i=1;i<=7;i++){
     document.getElementById('step'+i).classList.add('hidden');
   }
-  // Show current step
-  document.getElementById('step'+step).classList.remove('hidden');
-
-  // If final step, show message
-  if(step===7){
-    typeMessage(fullMessage, document.getElementById('message'), 25);
+  if(step <=6){
+    document.getElementById('step'+step).classList.remove('hidden');
+  } else if(step ===7){
+    document.getElementById('step7').classList.remove('hidden');
   }
+}
+
+function playMusicAndShowMessage(){
+  document.getElementById('bgMusic').play();
+  document.getElementById('step7').classList.add('hidden');
+  document.getElementById('messageCard').classList.remove('hidden');
+  typeMessage(fullMessage, document.getElementById('message'), 25);
 }
 
 // Typing effect
@@ -191,7 +205,7 @@ function typeMessage(text, element, speed){
   let i=0;
   function typing(){
     if(i<text.length){
-      element.innerHTML+=text.charAt(i);
+      element.innerHTML += text.charAt(i);
       i++;
       setTimeout(typing, speed);
     }
@@ -221,7 +235,7 @@ function createSparkle(){
   setTimeout(()=>sparkle.remove(),5000);
 }
 setInterval(createSparkle,300);
-
 </script>
+
 </body>
 </html>
