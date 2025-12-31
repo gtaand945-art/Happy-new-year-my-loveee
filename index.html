@@ -5,86 +5,90 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>For Jasminee ❤️</title>
 <style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
-    background: linear-gradient(135deg, #ffdee9, #b5fffc);
-  }
-  .card {
-    background: rgba(255,255,255,0.95);
-    padding: 30px;
-    max-width: 850px;
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    animation: fadeIn 1s ease;
-    z-index: 10;
-    position: relative;
-  }
-  h1 {
-    color: #d63384;
-  }
-  p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #333;
-  }
-  button {
-    margin: 10px;
-    padding: 12px 26px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 30px;
-    background: #d63384;
-    color: white;
-    cursor: pointer;
-  }
-  button:hover { opacity: 0.9; }
-  .hidden { display: none; }
-  .highlight { color: #d63384; font-weight: 600; }
-  @keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #ffdee9, #b5fffc);
+  position: relative;
+}
+.card {
+  background: rgba(255,255,255,0.95);
+  padding: 30px;
+  max-width: 850px;
+  width: 90%;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  animation: fadeIn 1s ease;
+  z-index: 10;
+  position: relative;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+h1 { color: #d63384; }
+p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #333;
+  opacity: 0;
+  transition: opacity 1s;
+}
+.visible { opacity: 1; }
+button {
+  margin: 10px;
+  padding: 12px 26px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  background: #d63384;
+  color: white;
+  cursor: pointer;
+}
+button:hover { opacity: 0.9; }
+.hidden { display: none; }
+.highlight { color: #d63384; font-weight: 600; }
+@keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
 
-  /* Hearts animation */
-  .heart {
-    position: absolute;
-    width: 20px; height: 20px;
-    background: red;
-    transform: rotate(45deg);
-    left: 50%; top: 50%;
-    animation: floatUp linear infinite;
-  }
-  .heart:before, .heart:after {
-    content: "";
-    position: absolute;
-    width: 20px; height: 20px;
-    background: red;
-    border-radius: 50%;
-  }
-  .heart:before { top: -10px; left: 0; }
-  .heart:after { left: 10px; top: 0; }
-  @keyframes floatUp {
-    0% { transform: translateY(0) rotate(45deg); opacity:1; }
-    100% { transform: translateY(-700px) rotate(45deg); opacity:0; }
-  }
+/* Hearts animation */
+.heart {
+  position: absolute;
+  width: 20px; height: 20px;
+  background: red;
+  transform: rotate(45deg);
+  animation: floatUp linear infinite;
+}
+.heart:before, .heart:after {
+  content: "";
+  position: absolute;
+  width: 20px; height: 20px;
+  background: red;
+  border-radius: 50%;
+}
+.heart:before { top: -10px; left: 0; }
+.heart:after { left: 10px; top: 0; }
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(45deg); opacity:1; }
+  100% { transform: translateY(-700px) rotate(45deg); opacity:0; }
+}
 </style>
 </head>
 <body>
 
-<!-- Background music -->
-<audio id="bgMusic" loop>
-  <source src="https://docs.google.com/uc?export=download&id=1jUwH9Yh5zvMGx3K5gD7wGr2f2JveQYzY" type="audio/mpeg">
-</audio>
+<!-- Hidden YouTube iframe for music -->
+<div id="musicContainer" class="hidden">
+  <iframe width="0" height="0" 
+    src="https://www.youtube.com/embed/2AJrQUkJQAw?autoplay=1&loop=1&playlist=2AJrQUkJQAw" 
+    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
 
 <!-- Step 1 -->
 <div class="card" id="step1">
   <h1>Do you love me? 🥹💗</h1>
-  <button onclick="nextStep(2, true)">Yes 😌</button>
-  <button onclick="nextStep(2, true)">Yes of course 🥹</button>
+  <button onclick="nextStep(2,true)">Yes 😌</button>
+  <button onclick="nextStep(2,true)">Yes of course 🥹</button>
 </div>
 
 <!-- Step 2 -->
@@ -98,49 +102,63 @@
 <div class="card hidden" id="step3">
   <h1>Happy New Year<br>my lovee my bhonduuuu 🥹💗✨</h1>
   <p class="highlight">Click below 👇</p>
-  <button onclick="nextStep(4)">Click here 💌</button>
+  <button onclick="nextStep(4,true)">Click here 💌</button>
 </div>
 
 <!-- Step 4 -->
 <div class="card hidden" id="step4">
   <h1>Jasminee 🥹💋</h1>
-  <p>We really went through a lot this year…<br>but <span class="highlight">humara dobara milna</span> — that was the best thing 🥹💗</p>
-  <p>Meri berang zindagi mein phir se rang aa gaye,<br><span class="highlight">sirf aapke kaaran</span> 🥹✨</p>
-  <p>I’m so lucky to have you, really 🥹💕</p>
-  <p>Main chahta hoon ki hum hamesha aise hi rahein,<br>aur humara relationship <span class="highlight">forever</span> rahe 🥹💗</p>
-  <p>Itna strong bond ho ki log humein dekh ke kahe —<br><em>“Inke jaisa bond ho toh ho.”em> 🫶</p>
-  <p>You know… I love you <span class="highlight">so so so much</span> 🥹💗</p>
-  <p>Aur mujhe aaj bhi humari <span class="highlight">first kiss</span> yaad hai 🥹💋<br>Aapka soft sa face, aur jis tarah aapne mujhe kiss kiya —<br>everything was just <span class="highlight">perfect</span> 🥹💕</p>
-  <p>Woh 10 months bina aapke bohot mushkil the 🥹<br>Par mujhe bohot khushi hai ki <span class="highlight">tu hi wapas aayi meri zindagi mein</span> 💗</p>
-  <p>Aur main vaada karta hoon —<br><span class="highlight">ab tu hi rahegi</span> 🥹🫶</p>
-  <p>Haan, shayad thoda late ho gaya…<br>par main khush hoon ki hum sahi waqt pe, dobara mile 🥹💗</p>
-  <p class="highlight">Tu hi meri good luck 🍀<br>meri khushi 😊<br>meri cutuuu 🥹<br>meri jassuuuu 💗<br>meri zindagi<br>meri jaan<br>meri future wife 😭❤️<br>meri bhonduuuu 🥹💗</p>
-  <p class="highlight">I loveeeee youuuuu sooooo muchhh meri bhonduuuuu 🥹💗</p>
-  <h2>✨ Happy New Year, My Love ✨</h2>
-  <p>May God bless us with a beautiful, peaceful, care‑free life 🥹💗<br>Hamesha ek‑dusre ka saath mile,<br>ye pyaar bas badhta hi jaaye,<br>aur rab humein har buri nazar se durr rakhe 🤍🧿</p>
-  <p class="highlight">I love you so much, Jasminee 🥹💗</p>
-  <p>And again… <span class="highlight">Happy New Year, my love</span> 🥹💋<br><br><em>Agr mnu zindagi dobaara jeon da mauka mile mai hr waar <span class="highlight">tere naal</span> jeonga ❤️</em></p>
+  <div id="messageContainer">
+    <p>We really went through a lot this year…<br>but <span class="highlight">humara dobara milna</span> — that was the best thing 🥹💗</p>
+    <p>Meri berang zindagi mein phir se rang aa gaye,<br><span class="highlight">sirf aapke kaaran</span> 🥹✨</p>
+    <p>I’m so lucky to have you, really 🥹💕</p>
+    <p>Main chahta hoon ki hum hamesha aise hi rahein,<br>aur humara relationship <span class="highlight">forever</span> rahe 🥹💗</p>
+    <p>Itna strong bond ho ki log humein dekh ke kahe —<br><em>“Inke jaisa bond ho toh ho.”em> 🫶</p>
+    <p>You know… I love you <span class="highlight">so so so much</span> 🥹💗</p>
+    <p>Aur mujhe aaj bhi humari <span class="highlight">first kiss</span> yaad hai 🥹💋<br>Aapka soft sa face, aur jis tarah aapne mujhe kiss kiya —<br>everything was just <span class="highlight">perfect</span> 🥹💕</p>
+    <p>Woh 10 months bina aapke bohot mushkil the 🥹<br>Par mujhe bohot khushi hai ki <span class="highlight">tu hi wapas aayi meri zindagi mein</span> 💗</p>
+    <p>Aur main vaada karta hoon —<br><span class="highlight">ab tu hi rahegi</span> 🥹🫶</p>
+    <p>Haan, shayad thoda late ho gaya…<br>par main khush hoon ki hum sahi waqt pe, dobara mile 🥹💗</p>
+    <p class="highlight">Tu hi meri good luck 🍀<br>meri khushi 😊<br>meri cutuuu 🥹<br>meri jassuuuu 💗<br>meri zindagi<br>meri jaan<br>meri future wife 😭❤️<br>meri bhonduuuu 🥹💗</p>
+    <p class="highlight">I loveeeee youuuuu sooooo muchhh meri bhonduuuuu 🥹💗</p>
+    <h2>✨ Happy New Year, My Love ✨</h2>
+    <p>May God bless us with a beautiful, peaceful, care‑free life 🥹💗<br>Hamesha ek‑dusre ka saath mile,<br>ye pyaar bas badhta hi jaaye,<br>aur rab humein har buri nazar se durr rakhe 🤍🧿</p>
+    <p class="highlight">I love you so much, Jasminee 🥹💗</p>
+    <p>And again… <span class="highlight">Happy New Year, my love</span> 🥹💋<br><br><em>Agr mnu zindagi dobaara jeon da mauka mile mai hr waar <span class="highlight">tere naal</span> jeonga ❤️</em></p>
+  </div>
 </div>
 
 <script>
-  // Floating hearts
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.style.left = Math.random()*100 + 'vw';
-    heart.style.animationDuration = 3 + Math.random()*2 + 's';
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
-  }
-  setInterval(createHeart, 300);
+// Hearts animation
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.style.left = Math.random()*100 + 'vw';
+  heart.style.animationDuration = 3 + Math.random()*2 + 's';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}
+setInterval(createHeart, 300);
 
-  // Steps navigation + music
-  const bgMusic = document.getElementById('bgMusic');
-  function nextStep(step, playMusic=false) {
-    document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
-    document.getElementById('step' + step).classList.remove('hidden');
-    if(playMusic) bgMusic.play().catch(()=>{}); // play on first click
+// Steps and music
+const musicContainer = document.getElementById('musicContainer');
+function nextStep(step, playMusic=false) {
+  document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+  const next = document.getElementById('step' + step);
+  next.classList.remove('hidden');
+  if(playMusic) musicContainer.classList.remove('hidden'); // starts YouTube iframe
+
+  // If step 4, show paragraphs one by one
+  if(step === 4){
+    const paragraphs = next.querySelectorAll('#messageContainer p, #messageContainer h2');
+    let i = 0;
+    const interval = setInterval(() => {
+      if(i >= paragraphs.length){ clearInterval(interval); return; }
+      paragraphs[i].classList.add('visible');
+      i++;
+    }, 700); // 700ms between each paragraph
   }
+}
 </script>
 
 </body>
