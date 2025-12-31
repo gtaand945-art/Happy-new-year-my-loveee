@@ -127,9 +127,11 @@ p{font-size:1.05rem; line-height:1.7; text-align:left;}
   <button onclick="nextStep(7)">Always 😍</button>
 </div>
 
-<!-- Final Step with Music Button -->
+<!-- Step 7: Play Song & Show Message -->
 <div class="card hidden" id="step7">
-  <button onclick="playMusicAndShowMessage()">Click here to see your message 🎶💗</button>
+  <h2>Almost there! 🥰</h2>
+  <button onclick="playSong()">Play Song 🎶</button>
+  <button onclick="showFinalMessage()">Show My Message 💌</button>
 </div>
 
 <!-- Long Message -->
@@ -192,8 +194,16 @@ function nextStep(step){
   }
 }
 
-function playMusicAndShowMessage(){
-  document.getElementById('bgMusic').play();
+function playSong(){
+  const audio = document.getElementById('bgMusic');
+  audio.play().then(()=>{
+    alert("Song is playing! 💖");
+  }).catch(err=>{
+    alert("Please tap the button again to allow song to play 🎵");
+  });
+}
+
+function showFinalMessage(){
   document.getElementById('step7').classList.add('hidden');
   document.getElementById('messageCard').classList.remove('hidden');
   typeMessage(fullMessage, document.getElementById('message'), 25);
