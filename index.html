@@ -127,10 +127,9 @@ p{font-size:1.05rem; line-height:1.7; text-align:left;}
   <button onclick="nextStep(7)">Always 😍</button>
 </div>
 
-<!-- Step 7: Play Song & Show Message -->
+<!-- Step 7: Show Message directly -->
 <div class="card hidden" id="step7">
   <h2>Almost there! 🥰</h2>
-  <button onclick="playSong()">Play Song 🎶</button>
   <button onclick="showFinalMessage()">Show My Message 💌</button>
 </div>
 
@@ -138,11 +137,6 @@ p{font-size:1.05rem; line-height:1.7; text-align:left;}
 <div class="card hidden" id="messageCard">
   <div id="message"></div>
 </div>
-
-<!-- Background Music -->
-<audio id="bgMusic" loop>
-  <source src="https://drive.google.com/uc?export=download&id=1BhLxN09jAHC7tlNKAFuCxAcQxN8b9CDy" type="audio/mpeg">
-</audio>
 
 <script>
 const fullMessage = `Jasminee 🥹💋
@@ -192,15 +186,6 @@ function nextStep(step){
   } else if(step ===7){
     document.getElementById('step7').classList.remove('hidden');
   }
-}
-
-function playSong(){
-  const audio = document.getElementById('bgMusic');
-  audio.play().then(()=>{
-    alert("Song is playing! 💖");
-  }).catch(err=>{
-    alert("Please tap the button again to allow song to play 🎵");
-  });
 }
 
 function showFinalMessage(){
